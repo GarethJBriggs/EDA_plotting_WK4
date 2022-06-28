@@ -1,28 +1,37 @@
-        NEI <- readRDS("summarySCC_PM25.rds")
-        
-        
-        ## extract gross data to df(x)
-        ## of total PM2.5 by year
-        
-        
-        x <- tapply(NEI$Emissions, NEI$year, sum) 
-        x <- as.data.frame(x)
-        x$year <- rownames(x)
-        rownames(x) <- NULL
-        colnames(x)[1] <- "total.PM2.5"
+        ##Plot 1        
 
-        ## process x$year and x$total.PM2.5 for plotting
+        NEI <- readRDS("summarySCC_PM25.rds")
+        SCC <- readRDS("Source_Classification_Code.rds")
         
-        xp <- as.numeric(x$year)
-        yp <- log10(x$total.PM2.5)
+        ## extract gross emissions and year data  
+        ## of total PM2.5 by year to array
+           
+        
+        Emi_Yr <- tapply(NEI$Emissions, NEI$year, sum) #
+        
+        ## create a df from sum of all USA emissions array
+        
+        Emi_Yr_df <- as.data.frame(Emi_Yr) #
+        
+        
+        ## process df ready for extracting values
+        
+        Emi_Yr_df$year <- rownames(Emi_Yr_df) #
+        rownames(Emi_Yr_df) <- NULL #
+        colnames(Emi_Yr_df)[1] <- "total.PM2.5"#
+
+        ## process year and total.PM2.5 for plotting
+        
+        xp <- as.numeric(Emi_Yr_df$year)
+        yp <- log10(Emi_Yr_df$total.PM2.5)
         
         ## plot data
         
         plot(xp, yp , xlab = "Year",  ylab ="log10 Tons PM2.5 Emitted",
-             main = "PM2.5 Emmisons 1999 - 2008" , pch = 21, cex = 2, lwd =2,)
+             main = "Total PM2.5 Emmisons in the USA 1999 - 2008" , pch = 21, cex = 2, lwd =2,)
         
         ## fit a line
         
         abline(lm(yp ~ xp), col = "red" , lwd = 2, lty = 6)
                
-        ##also 10^x for reciprocal
+       
