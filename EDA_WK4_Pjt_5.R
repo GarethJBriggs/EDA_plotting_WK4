@@ -34,4 +34,4 @@ libarary(ggplot2)
         g <- ggplot(BC_df_mod, aes(year, Emissions)) + geom_point(aes(color = "yellow"), alpha = 1/3, size = 2)
         g + geom_smooth(method = "lm", formula = y ~ x, col = "blue")
         
-        ## Problem! With geom_point and color 
+        ## Problem! With geom_point and color and axies labelling 

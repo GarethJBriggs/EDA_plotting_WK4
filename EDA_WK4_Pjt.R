@@ -39,5 +39,4 @@
         dev.copy(png, file = "plot1.png")
         
         ## reset devices
-        
         dev.off()

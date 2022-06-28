@@ -1,4 +1,4 @@
-        plot2
+        ## plot2
 
         NEI <- readRDS("summarySCC_PM25.rds")
         SCC <- readRDS("Source_Classification_Code.rds")       
@@ -30,8 +30,8 @@
         
         ## plot data
         
-        plot(xBC, yBC , xlab = "Year",  ylab ="log10 Tons PM2.5 Emitted",
-        main = "PM2.5 Emmisons 1999 - 2008, Baltimore City, Maryland" 
+        plot(xBC, yBC , xlab = "Year",  ylab ="log10 Tons PM 2.5 Emitted",
+        main = "PM 2.5 Emmisons 1999 - 2008, Baltimore City, Maryland" 
         , pch = 19, cex = 1.5, lwd =2,)
 
         ## fit a line
