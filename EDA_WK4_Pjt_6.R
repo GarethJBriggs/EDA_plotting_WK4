@@ -24,20 +24,11 @@ library(ggplot2)
         
         BCLA_df_mod <- BCLA_df[BCLA_df$SCC %in% mtSCC, ]
         
+        ## log10 emissions in BCLA_mod df
+        
         BCLA_df_mod$Emissions <- log10(BCLA_df_mod$Emissions)
         
-        ############################################
-        fips <- split(BCLA_df_mod, BCLA_df_mod$fips)
-        
-        df_fip_LA <- as.data.frame(fips$`06037`)
-        df_fip_BC <- as.data.frame(fips$`24510`)
-        
-        xLA = df_fip_LA$year
-        yLA = log10(df_fip_LA$Emissions)
-        
-        xBC = df_fip_BC$year
-        yLA = log10(df_fip_BC$Emissions)
-        #############################################
+        ## plot ggplot, fact wrap and color for BC and LA fips, with regressions lines
        
          g <- ggplot(BCLA_df_mod, aes(year, Emissions)) + geom_point(aes(color = fips), alpha = 1/3, size = 2)
          g + facet_wrap(.~ fips, scales = "free_y") + geom_smooth(method = "lm", formula = y ~ x, col = "green")     
