@@ -1,4 +1,4 @@
-
+libarary(ggplot2)
         NEI <- readRDS("summarySCC_PM25.rds")
         SCC <- readRDS("Source_Classification_Code.rds")       
 
@@ -25,10 +25,13 @@
         
         BC_df_mod <- BC_df[BC_df$SCC %in% mtSCC, ]
         
-        ## plotting
+        ## Changing emissions in BC_df_mod to log10 format
         
-        xm = BC_df_mod$year 
-        ym = log10(BC_df_mod$Emissions) 
+        BC_df_mod$Emissions <- log10(BC_df_mod$Emissions)
         
-        plot(x = xm, y = ym, pch = 19, cex = 2, lwd = 2, col = "blue")
-        abline(lm(ym ~ xm), col = "black", lwd = 2, lty = 3)
+        ## Plotting Baltimore City emissions data by year in ggplot2
+        
+        g <- ggplot(BC_df_mod, aes(year, Emissions)) + geom_point(aes(color = "yellow"), alpha = 1/3, size = 2)
+        g + geom_smooth(method = "lm", formula = y ~ x, col = "blue")
+        
+        ## Problem! With geom_point and color 
