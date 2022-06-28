@@ -34,4 +34,10 @@
         
         abline(lm(yp ~ xp), col = "red" , lwd = 2, lty = 6)
                
-       
+        ## copy to PNG file
+        
+        dev.copy(png, file = "plot1.png")
+        
+        ## reset devices
+        
+        dev.off()
