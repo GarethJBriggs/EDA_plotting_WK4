@@ -1,4 +1,7 @@
 library(ggplot2)
+                
+        ## Plot 6: needs fips set as character, so facet legend shows county names not numeric ids
+        
         NEI <- readRDS("summarySCC_PM25.rds")
         SCC <- readRDS("Source_Classification_Code.rds")       
 
@@ -30,9 +33,20 @@ library(ggplot2)
         
         ## plot ggplot, fact wrap and color for BC and LA fips, with regressions lines
        
-         g <- ggplot(BCLA_df_mod, aes(year, Emissions)) + geom_point(aes(color = fips), alpha = 1/3, size = 2)
-         g + facet_wrap(.~ fips, scales = "free_y") + geom_smooth(method = "lm", formula = y ~ x, col = "green")     
+         g <- ggplot(BCLA_df_mod, aes(year, Emissions)) 
+         g + geom_point(aes(color = fips), alpha = 1/3, size = 2) +
+             facet_wrap(.~ fips, scales = "free_y") + 
+             geom_smooth(method = "lm", formula = y ~ x, col = "green") +   
+             labs(x = "Year", y = "log10 Tons Emissions PM 2.5") +
+             ggtitle("PM 2.5 Emissions in Baltimore City and Los Angeles County from Vehicle Emissions 1999 - 2008") +
+             theme(plot.title = element_text(hjust = 0.5))
         
-        
-        
+         ## copy to PNG file
+         
+         dev.copy(png, file = "plot5.png")
+         
+         ## reset devices
+         
+         dev.off()
+         
                 
