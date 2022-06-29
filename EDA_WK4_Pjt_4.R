@@ -21,7 +21,7 @@ library(scales)
         
         xc = NEI_SCC_mod$year
         
-        yc = log10(NEI_SCC_mod$Emissions)
+        yc = NEI_SCC_mod$Emissions
         
         table(is.infinite(yc))
          
@@ -37,3 +37,4 @@ library(scales)
         
         dev.off()
      
+        
