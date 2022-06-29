@@ -1,4 +1,7 @@
 libarary(ggplot2)
+
+        ## Problem: With geom_point and color not showing, bae on legend and axes                 
+
         NEI <- readRDS("summarySCC_PM25.rds")
         SCC <- readRDS("Source_Classification_Code.rds")       
 
@@ -31,7 +34,18 @@ libarary(ggplot2)
         
         ## Plotting Baltimore City emissions data by year in ggplot2
         
-        g <- ggplot(BC_df_mod, aes(year, Emissions)) + geom_point(aes(color = "yellow"), alpha = 1/3, size = 2)
-        g + geom_smooth(method = "lm", formula = y ~ x, col = "blue")
+        g <- ggplot(BC_df_mod, aes(year, Emissions)) 
+        g + geom_point(aes(color = "yellow"), alpha = 1/3, size = 2) +
+            labs(x = "Year", y = "log10 Tons Emissions PM 2.5") +
+            ggtitle("PM 2.5 Emissions in Baltimore City from Vehicle Emissions 1999 - 2008") +
+            geom_smooth(method = "lm", formula = y ~ x, col = "blue") +
+            theme(plot.title = element_text(hjust = 0.5))
         
-        ## Problem! With geom_point and color and axies labelling 
+        ## copy to PNG file
+        
+        dev.copy(png, file = "plot5.png")
+        
+        ## reset devices
+        
+        dev.off()
+        
