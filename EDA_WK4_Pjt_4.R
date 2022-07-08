@@ -21,17 +21,16 @@ library (dplyr)
         
         ## group data to allow summarizing of fips sites by coal combustion observations
         
-        NEI_SCC_mod <-  NEI_SCC_mod %>%
+        NEI_SCC_mod_dp <-  NEI_SCC_mod %>%
                 group_by(year, fips) %>%
                 summarize(total_coal = sum(Emissions))
-        ifelse(NEI_SCC_mod$total_coal == 0, )
         
-        xc = NEI_SCC_mod$year
+        xc = NEI_SCC_mod_dp$year
         
-        yc = log10(NEI_SCC_mod$total_coal)
+        yc = NEI_SCC_mod_dp$total_coal
+           
         
-        
-        plot(x = xc, y= yc, pch = 19, cex = 2, lwd = 2, col = "red" )
+        plot(x = xc, y = yc, pch = 19, cex = 2, lwd = 2, col = "red" )
         
         abline(lm(yc ~ xc), col = "red" , lwd = 2, lty = 4)
         
@@ -44,3 +43,6 @@ library (dplyr)
         dev.off()
      
         table(is.infinite(yc))
+        
+        
+        ifelse(yc != 0, log10(yc), yc)
