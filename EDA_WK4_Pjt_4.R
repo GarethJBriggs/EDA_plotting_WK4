@@ -1,4 +1,4 @@
-library(scales)        
+library (dplyr)
 
         ##Plot 4 - problems with log/infinity
 
@@ -19,12 +19,18 @@ library(scales)
         ## extract from NEI the coal combustion rows
         NEI_SCC_mod <- NEI[NEI$SCC %in% SCC_vals, ] ##rm.na's'
         
+        ## group data to allow summarizing of fips sites by coal combustion observations
+        
+        NEI_SCC_mod <-  NEI_SCC_mod %>%
+                group_by(year, fips) %>%
+                summarize(total_coal = sum(Emissions))
+        ifelse(NEI_SCC_mod$total_coal == 0, )
+        
         xc = NEI_SCC_mod$year
         
-        yc = NEI_SCC_mod$Emissions
+        yc = log10(NEI_SCC_mod$total_coal)
         
-        table(is.infinite(yc))
-         
+        
         plot(x = xc, y= yc, pch = 19, cex = 2, lwd = 2, col = "red" )
         
         abline(lm(yc ~ xc), col = "red" , lwd = 2, lty = 4)
@@ -37,4 +43,4 @@ library(scales)
         
         dev.off()
      
-        
+        table(is.infinite(yc))
