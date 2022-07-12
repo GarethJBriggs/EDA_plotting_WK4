@@ -1,6 +1,10 @@
 library (dplyr)
 
-        ##Plot 4 - problems with log/infinity
+        ##Plot 4 - problems with log/infinity - can be fixed by other code
+        ## needs to be used as an example for aggregation by fips 
+        ## with and x y plot
+        ## get summaries of aggregated fips data
+        ## tidy smelly code
 
         NEI <- readRDS("summarySCC_PM25.rds")
         SCC <- readRDS("Source_Classification_Code.rds") 
