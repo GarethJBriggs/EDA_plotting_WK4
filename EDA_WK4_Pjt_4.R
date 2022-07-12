@@ -25,6 +25,17 @@ library (dplyr)
                 group_by(year, fips) %>%
                 summarize(total_coal = sum(Emissions))
         
+        NEI_SCC_mod_dp <- as.data.frame(NEI_SCC_mod_dp)
+        
+        ## set to log10 total_coal column
+        
+        NEI_SCC_mod_dp$total_coal <- log10(NEI_SCC_mod_dp$total_coal)
+        
+        ## code fine to this point 
+       
+        
+        NEI_SCC_mod_dp[is.na( NEI_SCC_mod_dp) | NEI_SCC_mod_dp =="-Inf"] = NA        
+        
         xc = NEI_SCC_mod_dp$year
         
         yc = NEI_SCC_mod_dp$total_coal

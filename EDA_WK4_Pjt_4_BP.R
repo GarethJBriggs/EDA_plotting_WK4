@@ -25,11 +25,13 @@
         group_by(year, fips) %>%
         summarize(total_coal = sum(Emissions))
 
-        xc = NEI_SCC_mod_dp$year
+        xc = NEI_SCC_mod$year
 
         yc = NEI_SCC_mod_dp$total_coal
         
-        boxplot(log10(yc) ~ xc)
+        yc = NEI_SCC_mod$Emissions
+        
+        boxplot(yc ~ xc)
 
 
 
