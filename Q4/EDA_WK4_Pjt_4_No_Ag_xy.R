@@ -1,5 +1,7 @@
 ##Plot 4 - problems with log/infinity are rectified here
-##       - data is not aggrigated by fips/year
+##       - data is not aggregated by fips/year
+##       - data is not logged
+##       - data is x/y plotted
 
         NEI <- readRDS("summarySCC_PM25.rds")
         SCC <- readRDS("Source_Classification_Code.rds") 
@@ -16,17 +18,7 @@
         SCC_vals <- coal_SCC$SCC
 
         ## extract from NEI the coal combustion rows
-        NEI_SCC_mod <- NEI[NEI$SCC %in% SCC_vals, ] ##rm.na's'
-
-
-        ## set to log10 Emissions column
-
-        NEI_SCC_mod$Emissions <- log10(NEI_SCC_mod$Emissions)
-
-        ## remove -Inf, convert to NA
-
-        NEI_SCC_mod[is.na( NEI_SCC_mod) | NEI_SCC_mod =="-Inf"] = NA        
-
+        NEI_SCC_mod <- NEI[NEI$SCC %in% SCC_vals, ] ##rm.na'
         
         ## extract variables
         
