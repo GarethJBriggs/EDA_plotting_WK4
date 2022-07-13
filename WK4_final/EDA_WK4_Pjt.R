@@ -6,7 +6,6 @@
         ## extract gross emissions and year data  
         ## of total PM2.5 by year to array
            
-        
         emi_yr <- tapply(NEI$Emissions, NEI$year, sum) #
         
         ## create a df from sum of all USA emissions array
@@ -39,4 +38,5 @@
         dev.copy(png, file = "plot1.png")
         
         ## reset devices
+        
         dev.off()
