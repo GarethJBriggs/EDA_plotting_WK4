@@ -1,5 +1,5 @@
 library(ggplot2)
-library(dpl)
+
                 
         ## Plot 6: needs fips set as character, so facet legend shows county names not numeric ids
         
@@ -10,7 +10,7 @@ library(dpl)
         
         BCLA_df <-subset(NEI, fips == "24510" | fips == "06037")
         
-        
+        BCLA_df$fips <- ifelse(BCLA_df$fips == "06037", "Los Angeles", ifelse(BCLA_df$fips == "24510" , "Baltimore" , NA))
         
         ## identify the rows contain vehicle emissions using grep
         mtor<- grep("vehicle", SCC$EI.Sector, ignore.case = TRUE, value = FALSE)
