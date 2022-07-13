@@ -7,23 +7,23 @@
         ## of total PM2.5 by year to array
            
         
-        Emi_Yr <- tapply(NEI$Emissions, NEI$year, sum) #
+        emi_yr <- tapply(NEI$Emissions, NEI$year, sum) #
         
         ## create a df from sum of all USA emissions array
         
-        Emi_Yr_df <- as.data.frame(Emi_Yr) #
+        emi_df <- as.data.frame(emi_yr) #
         
         
         ## process df ready for extracting values
         
-        Emi_Yr_df$year <- rownames(Emi_Yr_df) #
-        rownames(Emi_Yr_df) <- NULL #
-        colnames(Emi_Yr_df)[1] <- "total.PM2.5"#
+        emi_df$year <- rownames(emi_df) #
+        rownames(emi_df) <- NULL #
+        colnames(emi_df)[1] <- "total.PM2.5"#
 
         ## process year and total.PM2.5 for plotting
         
-        xp <- as.numeric(Emi_Yr_df$year)
-        yp <- log10(Emi_Yr_df$total.PM2.5)
+        xp <- as.numeric(emi_df$year)
+        yp <- log10(emi_df$total.PM2.5)
         
         ## plot data
         
