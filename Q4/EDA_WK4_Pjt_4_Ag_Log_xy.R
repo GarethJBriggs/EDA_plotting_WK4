@@ -49,7 +49,19 @@
         abline(lm(yc ~ xc), col = "red" , lwd = 2, lty = 4)
 
 
-
+        ##summary(sp$`1999`)
+        ## Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
+        ##-2.52288 -0.86328 -0.03905  0.29853  1.27985  4.15457       10 
+        ##> summary(sp$`2002`)
+        ##Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+        ##-4.1845 -0.4757  0.3849  0.4319  1.3360  4.0108      54 
+        ##> summary(sp$`2005`)
+        ##Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+        ##-4.1845 -0.4757  0.3838  0.4354  1.3402  4.0599      53 
+        ##> summary(sp$`2008`)
+        ## Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+        ##-8.1249 -0.3074  0.6978  0.6183  1.6907  4.4406     195 
+        > 
 
 
 
