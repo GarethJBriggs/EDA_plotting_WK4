@@ -37,16 +37,35 @@ library(ggplot2)
         
         bcla_df2$Emissions <- log10(bcla_df2$Emissions)
         
-        
         ## plot ggplot
+        
+        ## set aesthetics
        
          g <- ggplot(bcla_df2, aes(year, Emissions)) 
-         g + geom_point(aes(color = fips), alpha = 1/3, size = 2) +
-             facet_wrap(.~ fips, scales = "free_y") + 
-             geom_smooth(method = "lm", formula = y ~ x, col = "green") +   
-             labs(x = "Year", y = "log10 Tons Emissions PM 2.5") +
-             ggtitle("PM 2.5 Emissions from Vehicles in Baltimore City and Los Angeles from 1999 - 2008") +
-             theme(plot.title = element_text(hjust = 0.5))
+         
+                ## add points
+         
+                g + geom_point(aes(color = fips), alpha = 1/3, size = 2) +
+                 
+                ## set facets       
+                        
+                facet_wrap(.~ fips, scales = "free_y") + 
+                 
+                ## add line     
+                        
+                 geom_smooth(method = "lm", formula = y ~ x, col = "green") +   
+                 
+                 ## label axies
+                        
+                labs(x = "Year", y = "log10 Tons Emissions PM 2.5") +
+                 
+                 ## set title
+                        
+                ggtitle("PM 2.5 Emissions from Vehicles in Baltimore City and Los Angeles from 1999 - 2008") +
+                 
+                 ## centre title
+                        
+                 theme(plot.title = element_text(hjust = 0.5))
         
          ## copy to PNG file
          
