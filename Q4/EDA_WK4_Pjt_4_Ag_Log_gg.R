@@ -9,20 +9,23 @@
 
         NEI <- readRDS("summarySCC_PM25.rds")
         SCC <- readRDS("Source_Classification_Code.rds") 
+        
+        ## extract coal values from SCC, all also contain "combustion"
+        ## coatins 99 sources
 
-        coal_EI <- grep("coal", SCC$EI.Sector, ignore.case = TRUE, value = FALSE) ## returns 99 values
-
+        coal_EI <- grep("coal", SCC$EI.Sector, ignore.case = TRUE, value = FALSE) 
+        
         ## extract 99 rows containing coal combustion from SCC df
         ## gives a df of 15 cols and 99 rows 
 
         coal_SCC <- SCC[coal_EI, ]
 
         ##extract 99 SCC environmental sources from coal_SCC df
-        ## to SSC_vals, the 99 SCC characters for pollutant source
+        ## to SSC_vals, giving  99 SCC values for pollutant source
         SCC_vals <- coal_SCC$SCC
 
-        ## extract from NEI the coal combustion rows
-        NEI_SCC_mod <- NEI[NEI$SCC %in% SCC_vals, ] ##rm.na's'
+        ## extract from NEI the 99 rows associated with coal combustion
+        NEI_SCC_mod <- NEI[NEI$SCC %in% SCC_vals, ] 
 
         ## group data to allow summarizing of fips sites by coal combustion 
         ## emissions on aggrigate per county per year, as total_coal 
