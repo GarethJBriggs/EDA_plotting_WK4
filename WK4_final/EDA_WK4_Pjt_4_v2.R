@@ -13,38 +13,38 @@
         ## extract coal values from SCC, all also contain "combustion"
         ## contins 99 environmantal sources
 
-        coal_EI <- grep("coal", SCC$EI.Sector, ignore.case = TRUE, value = FALSE) 
+        coal_ei <- grep("coal", SCC$EI.Sector, ignore.case = TRUE, value = FALSE) 
         
         ## extract 99 rows containing coal combustion from SCC df
         ## gives a df of 15 cols and 99 rows 
 
-        coal_SCC <- SCC[coal_EI, ]
+        coal_scc <- SCC[coal_ei, ]
 
-        ##extract 99 SCC environmental sources from coal_SCC df
+        ##extract 99 SCC environmental sources from coal_scc df
         ## to SSC_vals, giving  99 SCC values for pollutant source
-        SCC_vals <- coal_SCC$SCC
+        scc_vals <- coal_scc$SCC
 
         ## extract from NEI the 99 rows associated with coal combustion
-        NEI_SCC_mod <- NEI[NEI$SCC %in% SCC_vals, ] 
+        nei_scc_df <- NEI[NEI$SCC %in% scc_vals, ] 
 
         ## group data to allow summarizing of fips sites by coal combustion 
         ## emissions on aggrigate per county per year, as total_coal 
 
-        NEI_SCC_mod_dp <-  NEI_SCC_mod %>%
+        nei_scc_df <-  nei_scc_df %>%
         group_by(year, fips) %>%
         summarize(total_coal = sum(Emissions))
         
         ## log10 total_coal values for plotting
 
-        NEI_SCC_mod_dp$total_coal <- log10(NEI_SCC_mod_dp$total_coal)
+        nei_scc_df$total_coal <- log10(nei_scc_df$total_coal)
         
         ## set any -inf values in df to NA to allow plotting
 
-        NEI_SCC_mod_dp[is.na( NEI_SCC_mod_dp) | NEI_SCC_mod_dp =="-Inf"] = NA  
+        nei_scc_df[is.na( nei_scc_df) | nei_scc_df =="-Inf"] = NA  
         
         ## ggplot
 
-        g <- ggplot(NEI_SCC_mod_dp, aes(x = year, y = total_coal))
+        g <- ggplot(nei_scc_df, aes(x = year, y = total_coal))
                 g + geom_point(color = "red", alpha = 0.25, size = 2) +
                 geom_smooth(method = "lm", formula = y ~ x, col = "purple") +
                 labs(x = "Year", y = "log10 Tons Emissions PM 2.5 Summed by County") +
