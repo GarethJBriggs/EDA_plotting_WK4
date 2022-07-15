@@ -36,6 +36,7 @@ libarary(ggplot2)
         
         
         ## set aesthetics
+        
         g <- ggplot(bc_df, aes(year, Emissions)) 
         
         
@@ -59,7 +60,6 @@ libarary(ggplot2)
             ## centre title
                 
             theme(plot.title = element_text(hjust = 0.5))
-        
         
         
         ## copy to PNG file
