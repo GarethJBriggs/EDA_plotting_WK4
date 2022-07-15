@@ -11,7 +11,7 @@
         SCC <- readRDS("Source_Classification_Code.rds") 
         
         ## extract coal values from SCC, all also contain "combustion"
-        ## contins 99 environmantal sources
+        ## totaling 99 environmantal sources
 
         coal_ei <- grep("coal", SCC$EI.Sector, ignore.case = TRUE, value = FALSE) 
         
@@ -43,13 +43,34 @@
         nei_scc_df[is.na( nei_scc_df) | nei_scc_df =="-Inf"] = NA  
         
         ## ggplot
+        
+        ## plot aesthetics
 
         g <- ggplot(nei_scc_df, aes(x = year, y = total_coal))
+        
+                ## plot points
+        
                 g + geom_point(color = "red", alpha = 0.25, size = 2) +
+                        
+                ## add regression line        
+                        
+                        
                 geom_smooth(method = "lm", formula = y ~ x, col = "purple") +
+                        
+                ## label axies        
+                        
+                        
                 labs(x = "Year", y = "log10 Tons Emissions PM 2.5 Summed by County") +
+                        
+                ## add title
+                        
+                        
                 ggtitle("PM 2.5 Emissions from Coal Combustion Per County Across the USA 1999 - 2008") +
+                        
+                ## centre tittle        
+                        
                 theme(plot.title = element_text(hjust = 0.5))
+                
                 
         ## copy to PNG file
                 
