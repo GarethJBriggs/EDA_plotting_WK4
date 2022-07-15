@@ -27,7 +27,8 @@
         ## plot data
         
         plot(xp, yp , xlab = "Year",  ylab ="log10 Tons PM2.5 Emitted",
-             main = "Total PM2.5 Emmisons in the USA 1999 - 2008" , pch = 21, cex = 2, lwd =2,)
+             main = "Total PM2.5 Emmisons in the USA 1999 - 2008" , 
+             pch = 21, cex = 1, lwd =2,)
         
         ## fit a line
         
