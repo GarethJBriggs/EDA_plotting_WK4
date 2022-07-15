@@ -11,7 +11,7 @@
         SCC <- readRDS("Source_Classification_Code.rds") 
         
         ## extract coal values from SCC, all also contain "combustion"
-        ## coatins 99 sources
+        ## contins 99 sources
 
         coal_EI <- grep("coal", SCC$EI.Sector, ignore.case = TRUE, value = FALSE) 
         
@@ -44,4 +44,7 @@
 
         g <- ggplot(NEI_SCC_mod_dp, aes(x = year, y = total_coal))
         g + geom_point(color = "red", alpha = 0.25, size = 2) +
-        geom_smooth(method = "lm", formula = y ~ x, col = "purple")
+        geom_smooth(method = "lm", formula = y ~ x, col = "purple") +
+        labs(x = "Year", y = "log10 Tons Emissions PM 2.5 Summed by County") +
+        ggtitle("PM 2.5 Emissions from Coal Combustion Per County Across the USA 1999 - 2008") +
+                theme(plot.title = element_text(hjust = 0.5))
