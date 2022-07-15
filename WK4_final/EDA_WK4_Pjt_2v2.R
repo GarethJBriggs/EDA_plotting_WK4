@@ -14,7 +14,7 @@
         
         ## create a df from sum of all Baltimore emissions array
        
-         bc_df2 <- as.data.frame(bc_arr)
+        bc_df2 <- as.data.frame(bc_arr)
         
         ## process df ready for extracting values
         
@@ -22,7 +22,7 @@
         rownames(bc_df2) <- NULL
         colnames(bc_df2)[1] <- "total.PM2.5"
 
-        ## extract BCdf$year and BCdf$total.PM2.5 for plotting
+        ## extract bcdf2$year and bcdf2$total.PM2.5 for plotting
 
         xb <- as.numeric(bc_df2$year)
         yb <- log10(bc_df2$total.PM2.5)
@@ -31,7 +31,7 @@
         
         plot(xb, yb , xlab = "Year",  ylab ="log10 Tons PM 2.5 Emitted",
         main = "PM 2.5 Emmisons 1999 - 2008, Baltimore City, Maryland" 
-        , pch = 19, cex = 1.5, lwd =2,)
+        , pch = 19, cex = 1, lwd =2,)
 
         ## fit a line
 
