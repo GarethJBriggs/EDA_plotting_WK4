@@ -46,7 +46,7 @@ library(ggplot2)
         
          ## copy to PNG file
          
-         dev.copy(png, file = "plot5.png")
+         dev.copy(png, file = "plot6.png")
          
          ## reset devices
          
